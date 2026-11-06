@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Ovoz dipfeykini aniqlash</title>
+    <style>
+        body {
+            background-color: #0D1B2A;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+        button {
+            background-color: #00E5B0;
+            color: #0D1B2A;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00c99a;
+        }
+        #natijaMatni {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ovoz dipfeykini aniqlash — demo</h1>
+    <p>Bu mening kiberxavfsizlik loyihamning namunasi.</p>
+
+    <input type="file" id="audioFayl" accept="audio/*" style="display:none" onchange="faylTanlandi()">
+    <button onclick="document.getElementById('audioFayl').click()">Audio fayl tanlash</button>
+    <p id="faylNomi"></p>
+
+    <button onclick="tahlilQil()">Tahlil qilish</button>
+    <p id="natijaMatni"></p>
+
+    <script>
+        function faylTanlandi() {
+            var fayl = document.getElementById("audioFayl").files[0];
+            if (fayl) {
+                document.getElementById("faylNomi").innerHTML = "Tanlangan fayl: " + fayl.name;
+            }
+        }
+
+        function tahlilQil() {
+            document.getElementById("natijaMatni").innerHTML = "Tahlil qilinmoqda...";
+
+            setTimeout(function() {
+                var natija = Math.floor(Math.random() * 100);
+                var xulosa = "";
+
+                if (natija >= 70) {
+                    xulosa = "Yuqori ehtimol bilan DIPFEYK!";
+                } else if (natija >= 40) {
+                    xulosa = "Shubhali, tekshirish kerak.";
+                } else {
+                    xulosa = "Haqiqiy ovoz ehtimoli yuqori.";
+                }
+
+                document.getElementById("natijaMatni").innerHTML = 
+                    "Dipfeyk ehtimoli: " + natija + "%<br>" + xulosa;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
